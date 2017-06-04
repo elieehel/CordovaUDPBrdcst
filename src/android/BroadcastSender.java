@@ -27,11 +27,7 @@ public class BroadcastSender implements Runnable {
 	}
 
 	public void stop() {
-		try {
-			socket.close();
-		} catch (IOException e) {
-			
-		}
+		socket.close();
 	}
 
 	public void run() {
