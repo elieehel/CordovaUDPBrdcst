@@ -42,11 +42,11 @@ public class BroadcastManager extends CordovaPlugin {
 	private Handler mHandler = new Handler();
 	private Thread listener;
 	private Thread sender;
-	
+
 	private BroadcastSender bSender;
 	private BroadcastServer bServer;
-	
-	
+
+
 
 	//will launch the activity
 	/*private Runnable mLaunchTask = new Runnable() {
@@ -63,7 +63,7 @@ public class BroadcastManager extends CordovaPlugin {
 
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		
+
 		context = this.cordova.getActivity().getApplicationContext(); 
 
 		PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
@@ -73,7 +73,7 @@ public class BroadcastManager extends CordovaPlugin {
 
 		String type = null;
 		String additional = null;
-		
+
 		if (action.equals(SEND_BROADCAST)) {
 			if (!sending) {
 				bSender = new BroadcastSender(this);
@@ -118,7 +118,7 @@ public class BroadcastManager extends CordovaPlugin {
 		}
 
 		this.sendUpdate(type, additional);
-		
+
 		return true;
 	}
 
@@ -143,15 +143,17 @@ public class BroadcastManager extends CordovaPlugin {
 	}
 
 	protected void sendUpdate(String type, String additional) {
-		JSONObject obj = new JSONObject();
-		obj.put("type", type);
-		obj.put("state", additional);
+		try {
+			JSONObject obj = new JSONObject();
+			obj.put("type", type);
+			obj.put("state", additional);
 
-		if (connectionCallbackContext != null) {
-			PluginResult result = new PluginResult(PluginResult.Status.OK, type);
-			result.setKeepCallback(true);
-			connectionCallbackContext.sendPluginResult(result);
-		} else {
-		}
+			if (connectionCallbackContext != null) {
+				PluginResult result = new PluginResult(PluginResult.Status.OK, type);
+				result.setKeepCallback(true);
+				connectionCallbackContext.sendPluginResult(result);
+			} else {
+			}
+		} catch (Exception e) {}
 	}
 }
