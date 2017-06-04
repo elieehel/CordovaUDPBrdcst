@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="com.cellip.lyncapp" version="0.0.1" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>PhoneState</name>
+    <description>Plugin to send and receive broadcasts</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,signal,network</keywords>
+    <author>Andreas Idehaag</author>
+    <!--<repo>https://github.com/elieehel/PhoneState.git</repo>-->
+
+    <js-module src="www/broadcastmanager.js" name="broadcastmanager">
+        <clobbers target="broadcastmanager" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="BroadcastManager">
+                <param name="android-package" value="org.eliee.cordovaudpbrdcst.BroadcastManager" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/BroadcastManager.java" target-dir="src/org/eliee/cordovaudpbrdcst/" />
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+        </config-file>
+    </platform>
+</plugin>
