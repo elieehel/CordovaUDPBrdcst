@@ -10,7 +10,6 @@ import org.apache.cordova.PluginEntry;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.apache.cordova.splashscreen.SplashScreen;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -46,6 +45,8 @@ public class BroadcastManager extends CordovaPlugin {
 	
 	private BroadcastSender bSender;
 	private BroadcastServer bServer;
+	
+	
 
 	//will launch the activity
 	/*private Runnable mLaunchTask = new Runnable() {
@@ -62,6 +63,8 @@ public class BroadcastManager extends CordovaPlugin {
 
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+		
+		context = this.cordova.getActivity().getApplicationContext(); 
 
 		PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
 		result.setKeepCallback(true);
@@ -71,8 +74,7 @@ public class BroadcastManager extends CordovaPlugin {
 		String type = null;
 		String additional = null;
 		
-		switch (action) {
-		case SEND_BROADCAST:
+		if (action.equals(SEND_BROADCAST)) {
 			if (!sending) {
 				bSender = new BroadcastSender(this);
 				sending = true;
@@ -81,8 +83,7 @@ public class BroadcastManager extends CordovaPlugin {
 			}
 			type = "server";
 			additional = ""+sending;
-			break;
-		case INTERRUPT:
+		} else if (action.equals(INTERRUPT)) {
 			if (sending) {
 				bSender.stop();
 				try {
@@ -94,8 +95,7 @@ public class BroadcastManager extends CordovaPlugin {
 			}
 			type = "server";
 			additional = ""+sending;
-			break;
-		case LISTEN: 
+		} else if(action.equals(LISTEN)) { 
 			if (!listening) {
 				bServer = new BroadcastServer(this);
 				listening = true;
@@ -104,8 +104,7 @@ public class BroadcastManager extends CordovaPlugin {
 			}
 			type = "send";
 			additional = ""+listening;
-			break;
-		case STOP_LISTEN:
+		} else if (action.equals(STOP_LISTEN)) {
 			bServer.stop();
 			try {
 				listener.join(2500);
@@ -116,12 +115,15 @@ public class BroadcastManager extends CordovaPlugin {
 			listening = false;
 			type = "send";
 			additional = ""+listening;
-			break;
 		}
 
 		this.sendUpdate(type, additional);
 		
 		return true;
+	}
+
+	protected Context getContext() {
+		return this.context;
 	}
 
 	private void echo(String message, CallbackContext callbackContext) {

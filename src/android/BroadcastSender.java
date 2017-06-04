@@ -19,9 +19,11 @@ public class BroadcastSender implements Runnable {
 	private static final String TAG = "brdcstlistener";
 
 	private BroadcastManager bM;
+	private Context mContext;
 
 	public BroadcastSender(BroadcastManager bM) {
 		this.bM = bM;
+		this.mContext = bM.getContext();
 	}
 
 	public void stop() {
