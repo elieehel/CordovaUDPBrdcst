@@ -1,0 +1,29 @@
+{
+  "name": "cordova-plugin-device",
+  "version": "1.0.0-dev",
+  "description": "Broadcast handling",
+  "types": "./types/index.d.ts",
+  "cordova": {
+    "id": "eliee-plugin-broadcast",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elieehel/CordovaUDPBrdcst"
+  },
+  "bugs": {
+    "url": "https://github.com/elieehel/CordovaUDPBrdcst/issues"
+  },
+  "keywords": [
+    "test"
+  ],
+  "scripts": {
+    "test": "npm run jshint",
+    "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src && node node_modules/jshint/bin/jshint tests"
+  },
+  "author": "Andreas Idehaag",
+  "license": "Apache-2.0",
+  "devDependencies": {
+  }
