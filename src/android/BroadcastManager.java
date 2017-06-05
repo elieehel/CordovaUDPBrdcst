@@ -83,7 +83,7 @@ public class BroadcastManager extends CordovaPlugin {
 				sender = new Thread(bSender);
 				sender.start();
 			}
-			type = "server";
+			type = "send";
 			additional = ""+sending;
 		} else if (action.equals(INTERRUPT)) {
 			if (sending) {
@@ -95,7 +95,7 @@ public class BroadcastManager extends CordovaPlugin {
 				}
 				sending = false;
 			}
-			type = "server";
+			type = "send";
 			additional = ""+sending;
 		} else if(action.equals(LISTEN)) { 
 			if (!listening) {
@@ -104,7 +104,7 @@ public class BroadcastManager extends CordovaPlugin {
 				listener = new Thread(bServer);
 				listener.start();
 			}
-			type = "send";
+			type = "server";
 			additional = ""+listening;
 		} else if (action.equals(STOP_LISTEN)) {
 			bServer.stop();
@@ -115,7 +115,7 @@ public class BroadcastManager extends CordovaPlugin {
 				listener = null;
 			}
 			listening = false;
-			type = "send";
+			type = "server";
 			additional = ""+listening;
 		} else if (action.equals(WS_START)) {
 			this.sManager.start();
@@ -156,7 +156,7 @@ public class BroadcastManager extends CordovaPlugin {
 			obj.put("state", additional);
 
 			if (connectionCallbackContext != null) {
-				PluginResult result = new PluginResult(PluginResult.Status.OK, type);
+				PluginResult result = new PluginResult(PluginResult.Status.OK, obj);
 				result.setKeepCallback(true);
 				connectionCallbackContext.sendPluginResult(result);
 			} else {
