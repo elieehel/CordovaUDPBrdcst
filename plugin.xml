@@ -22,6 +22,7 @@
         <source-file src="src/android/BroadcastManager.java" target-dir="src/org/eliee/cordovaudpbrdcst/" />
         <source-file src="src/android/BroadcastSender.java" target-dir="src/org/eliee/cordovaudpbrdcst/" />
         <source-file src="src/android/BroadcastServer.java" target-dir="src/org/eliee/cordovaudpbrdcst/" />
+        <source-file src="src/android/ServerManager.java" target-dir="src/org/eliee/cordovaudpbrdcst/" />
 
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.INTERNET" />
