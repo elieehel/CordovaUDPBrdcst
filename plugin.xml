@@ -7,6 +7,8 @@
     <author>Andreas Idehaag</author>
     <!--<repo>https://github.com/elieehel/PhoneState.git</repo>-->
 
+    <asset src="www/broadcastmanager.js" target="js/broadcastmanager.js"/>
+    
     <js-module src="www/broadcastmanager.js" name="broadcastmanager">
         <clobbers target="broadcastmanager" />
     </js-module>
