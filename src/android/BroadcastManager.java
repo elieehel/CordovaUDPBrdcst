@@ -31,6 +31,8 @@ public class BroadcastManager extends CordovaPlugin {
 	private static final String LISTEN          = "listen";
 	private static final String INTERRUPT       = "stopsend";
 	private static final String STOP_LISTEN     = "deaf";
+	private static final String WS_START 		= "wsstart";
+	private static final String WS_STOP 		= "wsstop";
 
 	private CallbackContext connectionCallbackContext;
 	private boolean listening = false;
@@ -46,7 +48,7 @@ public class BroadcastManager extends CordovaPlugin {
 	private BroadcastSender bSender;
 	private BroadcastServer bServer;
 
-
+	private ServerManager sManager;
 
 	//will launch the activity
 	/*private Runnable mLaunchTask = new Runnable() {
@@ -115,6 +117,10 @@ public class BroadcastManager extends CordovaPlugin {
 			listening = false;
 			type = "send";
 			additional = ""+listening;
+		} else if (action.equals(WS_START)) {
+			this.sManager.start();
+		} else if (action.equals(WS_STOP)) {
+			this.sManager.stop();
 		}
 
 		this.sendUpdate(type, additional);
@@ -140,6 +146,7 @@ public class BroadcastManager extends CordovaPlugin {
 		this.connectionCallbackContext = null;
 		this.cordova = cordova;
 		this.webView = webView;
+		this.sManager = new ServerManager();
 	}
 
 	protected void sendUpdate(String type, String additional) {

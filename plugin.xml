@@ -23,6 +23,8 @@
         <source-file src="src/android/BroadcastSender.java" target-dir="src/org/eliee/cordovaudpbrdcst/" />
         <source-file src="src/android/BroadcastServer.java" target-dir="src/org/eliee/cordovaudpbrdcst/" />
         <source-file src="src/android/ServerManager.java" target-dir="src/org/eliee/cordovaudpbrdcst/" />
+        <lib-file src="src/libs/commons-codec-1.10-rep.jar"/>
+        <lib-file src="src/libs/websocket.jar"/>
 
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.INTERNET" />
