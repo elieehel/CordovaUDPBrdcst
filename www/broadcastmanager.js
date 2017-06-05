@@ -1,7 +1,4 @@
 
-var exec = require('cordova/exec'),
-    cordova = require('cordova');
-
 var BroadcastManager = function() {
 	console.log("PHONESTATE BEING INITIATED");
 	this.channels = {
@@ -14,22 +11,22 @@ var BroadcastManager = function() {
 
 BroadcastManager.prototype.startListen = function() {
 	console.log("Trying to start listener");
-	exec(broadcastmanager.change, broadcastmanager.error, "BroadcastManager", "listen", [""]);
+	cordova.exec(broadcastmanager.change, broadcastmanager.error, "BroadcastManager", "listen", [""]);
 };
 
 BroadcastManager.prototype.stopListen = function() {
 	console.log("Trying to stop listener");
-	exec(broadcastmanager.change, broadcastmanager.error, "BroadcastManager", "deaf", [""]);
+	cordova.exec(broadcastmanager.change, broadcastmanager.error, "BroadcastManager", "deaf", [""]);
 };
 
 BroadcastManager.prototype.findServers = function() {
 	console.log("Trying to send broadcast");
-	exec(broadcastmanager.change, broadcastmanager.error, "BroadcastManager", "send", [""]);
+	cordova.exec(broadcastmanager.change, broadcastmanager.error, "BroadcastManager", "send", [""]);
 };
 
 BroadcastManager.prototype.stopFind = function() {
 	console.log("Trying to stop sending");
-	exec(broadcastmanager.change, broadcastmanager.error, "BroadcastManager", "stopsend", [""]);
+	cordova.exec(broadcastmanager.change, broadcastmanager.error, "BroadcastManager", "stopsend", [""]);
 };
 
 BroadcastManager.prototype.error = function(e) {
@@ -49,7 +46,7 @@ BroadcastManager.prototype.change = function(obj) {
 
 
 /*window.echo = function(str, callback) {
-        exec(callback, function(err) {
+        cordova.exec(callback, function(err) {
             callback('Nothing to echo. '+err);
         }, "BroadcastManager", "echo", [str]);
     };*/
@@ -59,6 +56,6 @@ var broadcastmanager = new BroadcastManager();
 
 
 /*broadcastmanager.pluginReload = function() {
-	exec(function() {console.log("RELOADED");}, function(err) {console.log("reload error"); console.log(err);}, "BroadcastManager", "resetplugin", ["asd"]);
+	cordova.exec(function() {console.log("RELOADED");}, function(err) {console.log("reload error"); console.log(err);}, "BroadcastManager", "resetplugin", ["asd"]);
 };*/
 module.exports = broadcastmanager;
