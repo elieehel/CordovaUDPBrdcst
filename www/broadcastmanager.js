@@ -61,6 +61,4 @@ var broadcastmanager = new BroadcastManager();
 /*broadcastmanager.pluginReload = function() {
 	exec(function() {console.log("RELOADED");}, function(err) {console.log("reload error"); console.log(err);}, "BroadcastManager", "resetplugin", ["asd"]);
 };*/
-
-};
 module.exports = broadcastmanager;
