@@ -1,6 +1,6 @@
 
-var exec = require('cordova/exec'),
-    cordova = require('cordova');
+/*var exec = require('cordova/exec'),
+    cordova = require('cordova');*/
 
 var BroadcastManager = function() {
 	console.log("PHONESTATE BEING INITIATED");
