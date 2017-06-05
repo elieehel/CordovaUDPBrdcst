@@ -8,16 +8,18 @@
     <!--<repo>https://github.com/elieehel/PhoneState.git</repo>-->
 
     <asset src="www/broadcastmanager.js" target="js/broadcastmanager.js"/>
-    
+
     <js-module src="www/broadcastmanager.js" name="broadcastmanager">
         <clobbers target="broadcastmanager" />
     </js-module>
 
     <!-- android -->
+
     <platform name="android">
-        <config-file target="res/xml/config.xml" parent="/*">
+        <config-file target="config.xml" parent="/*">
             <feature name="BroadcastManager">
                 <param name="android-package" value="org.eliee.cordovaudpbrdcst.BroadcastManager" />
+                <param name="onload" value="true" />
             </feature>
         </config-file>
 
