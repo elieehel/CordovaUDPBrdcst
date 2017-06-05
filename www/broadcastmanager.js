@@ -38,8 +38,8 @@ BroadcastManager.prototype.error = function(e) {
 };
 
 BroadcastManager.prototype.change = function(obj) {
-	//console.log("CHANGE IN PHONESTATE");
-	//console.log(c);
+	console.log("CHANGE IN BroadcastManager");
+	console.log(obj);
 	if (obj.type === "server")
 		broadcastmanager.serverState = obj.state;
 	else 
