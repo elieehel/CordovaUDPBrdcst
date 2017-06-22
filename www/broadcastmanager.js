@@ -34,7 +34,7 @@ BroadcastManager.prototype.stopFind = function() {
 
 BroadcastManager.prototype.addCb = function(cb) {
 	this.cb = cb;
-}
+};
 
 BroadcastManager.prototype.error = function(e) {
 	//console.log("ERROR IN PHONESTATE");
