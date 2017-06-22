@@ -45,6 +45,7 @@ BroadcastManager.prototype.change = function(obj) {
 		broadcastmanager.serverState = obj.state;
 	else 
 		broadcastmanager.sendState = obj.state;
+	broadcastmanager.stateObj = obj;
 	cordova.fireWindowEvent("watchingnetwork", obj);
 };
 
