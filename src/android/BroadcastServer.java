@@ -50,7 +50,6 @@ public class BroadcastServer implements Runnable {
 	                DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, packet.getAddress(), packet.getPort());
 	                socket.send(sendPacket);
                 }
-
             }
         } catch (IOException ex) {
             Log.i(TAG, "Oops" + ex.getMessage());

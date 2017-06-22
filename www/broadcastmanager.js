@@ -32,9 +32,6 @@ BroadcastManager.prototype.stopFind = function() {
 	exec(broadcastmanager.change, broadcastmanager.error, "BroadcastManager", "stopsend", [""]);
 };
 
-BroadcastManager.prototype.addCb = function(cb) {
-	this.cb = cb;
-};
 
 BroadcastManager.prototype.error = function(e) {
 	//console.log("ERROR IN PHONESTATE");
@@ -48,7 +45,6 @@ BroadcastManager.prototype.change = function(obj) {
 		broadcastmanager.serverState = obj.state;
 	else 
 		broadcastmanager.sendState = obj.state;
-	this.cb(obj);
 	cordova.fireWindowEvent("watchingnetwork", obj);
 };
 
