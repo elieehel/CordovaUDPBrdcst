@@ -27,7 +27,8 @@ public class BroadcastSender implements Runnable {
 	}
 
 	public void stop() {
-		socket.close();
+		if (socket != null)
+			socket.close();
 	}
 
 	public void run() {
@@ -46,13 +47,13 @@ public class BroadcastSender implements Runnable {
 			byte[] sendData = messageStr.getBytes();
 			DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, getBroadcastAddress(), 1338);
 			socket.send(sendPacket);
-			System.out.println(getClass().getName() + "Broadcast packet sent to: " + getBroadcastAddress().getHostAddress());
+			Log.i(TAG, getClass().getName() + "Broadcast packet sent to: " + getBroadcastAddress().getHostAddress());
 			byte[] recvBuf = new byte[15000];
 			DatagramPacket receivePacket = new DatagramPacket(recvBuf, recvBuf.length);
 			socket.receive(receivePacket);
 
 			//We have a response
-			System.out.println(getClass().getName() + ": Broadcast response from server: " + receivePacket.getAddress().getHostAddress());
+			Log.i(TAG, getClass().getName() + ": Broadcast response from server: " + receivePacket.getAddress().getHostAddress());
 
 			bM.sendUpdate("result", receivePacket.getAddress().getHostAddress());
 			socket.close();

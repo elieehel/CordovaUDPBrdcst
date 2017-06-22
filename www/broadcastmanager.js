@@ -8,7 +8,7 @@ var BroadcastManager = function() {
 		watchingnetwork: cordova.addWindowEventHandler("watchingnetwork")
 	};
 	for (var key in this.channels) {
-		this.channels[key].onHasSubscribersChange = BroadcastManager.subChange;
+		this.channels[key].onHasSubscribersChange = BroadcastManager.change;
 	}
 };
 
@@ -32,6 +32,10 @@ BroadcastManager.prototype.stopFind = function() {
 	exec(broadcastmanager.change, broadcastmanager.error, "BroadcastManager", "stopsend", [""]);
 };
 
+BroadcastManager.prototype.addCb = function(cb) {
+	this.cb = cb;
+}
+
 BroadcastManager.prototype.error = function(e) {
 	//console.log("ERROR IN PHONESTATE");
 	//console.log(e);
@@ -44,6 +48,7 @@ BroadcastManager.prototype.change = function(obj) {
 		broadcastmanager.serverState = obj.state;
 	else 
 		broadcastmanager.sendState = obj.state;
+	this.cb(obj);
 	cordova.fireWindowEvent("watchingnetwork", obj);
 };
 

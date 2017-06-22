@@ -23,7 +23,8 @@ public class BroadcastServer implements Runnable {
     
     public void stop() {
     	this.run = false;
-    	socket.close();
+        if (socket != null)
+    	   socket.close();
     }
 	
 	public void run() {
