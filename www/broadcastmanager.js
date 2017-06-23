@@ -32,6 +32,10 @@ BroadcastManager.prototype.stopFind = function() {
 	exec(broadcastmanager.change, broadcastmanager.error, "BroadcastManager", "stopsend", [""]);
 };
 
+BroadcastManager.prototype.startServer = function() {
+	console.log("starting server");
+	exec(broadcastmanager.change, broadcastmanager.error, "BroadcastManager", "wsstart", [""]);
+}
 
 BroadcastManager.prototype.error = function(e) {
 	//console.log("ERROR IN PHONESTATE");
